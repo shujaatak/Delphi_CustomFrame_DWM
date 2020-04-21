@@ -1,0 +1,44 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{484a7a2d-5222-46e4-a47e-9a64826d3b4f}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Projects Include="PatchForVistaOrAbove\PatchForVistaOrAbove.dproj" />
+    <Projects Include="ReinstateStdElemsTest.dproj" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Default.Personality</Borland.Personality>
+    <Borland.ProjectType />
+    <BorlandProject>
+  <BorlandProject xmlns=""> <Default.Personality> </Default.Personality> </BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Target Name="ReinstateStdElemsTest">
+    <MSBuild Projects="ReinstateStdElemsTest.dproj" Targets="" />
+  </Target>
+  <Target Name="ReinstateStdElemsTest:Clean">
+    <MSBuild Projects="ReinstateStdElemsTest.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="ReinstateStdElemsTest:Make">
+    <MSBuild Projects="ReinstateStdElemsTest.dproj" Targets="Make" />
+  </Target>
+  <Target Name="PatchForVistaOrAbove">
+    <MSBuild Projects="PatchForVistaOrAbove\PatchForVistaOrAbove.dproj" Targets="" />
+  </Target>
+  <Target Name="PatchForVistaOrAbove:Clean">
+    <MSBuild Projects="PatchForVistaOrAbove\PatchForVistaOrAbove.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="PatchForVistaOrAbove:Make">
+    <MSBuild Projects="PatchForVistaOrAbove\PatchForVistaOrAbove.dproj" Targets="Make" />
+  </Target>
+  <Target Name="Build">
+    <CallTarget Targets="ReinstateStdElemsTest;PatchForVistaOrAbove" />
+  </Target>
+  <Target Name="Clean">
+    <CallTarget Targets="ReinstateStdElemsTest:Clean;PatchForVistaOrAbove:Clean" />
+  </Target>
+  <Target Name="Make">
+    <CallTarget Targets="ReinstateStdElemsTest:Make;PatchForVistaOrAbove:Make" />
+  </Target>
+  <Import Condition="Exists('$(MSBuildBinPath)\Borland.Group.Targets')" Project="$(MSBuildBinPath)\Borland.Group.Targets" />
+</Project>
